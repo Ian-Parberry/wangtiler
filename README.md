@@ -1,6 +1,6 @@
-![Some examples.](/Doxygen/Images/tilings.png)
-
 # Wang Tiler
+
+![Some examples.](/Doxygen/Images/tilings.png)
 
 The source code for this basic Wang tiling generator, written and maintained by
 [Ian Parberry](http://ianparberry.com), is intended to be used by students to
