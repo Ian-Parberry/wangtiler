@@ -1,0 +1,63 @@
+/// \mainpage
+///
+/// Introduction
+/// ------------
+///
+/// The source code for this basic Wang tiling generator, written and maintained by
+/// [Ian Parberry](http://ianparberry.com), is intended to be used by students to
+/// extend and modify while they are learning about Wang tiling. Wang tiling is
+/// a method for tiling the plane using only a small number of tiles, in this case
+/// 8 tiles, in such a way that large repeated patterns are minimized. See
+/// https://en.wikipedia.org/wiki/Wang_tile for more information.
+///
+/// \image html tilings.png width=800
+///
+/// How to Use It
+/// -------------
+///
+/// The user interface consists of two drop-down menus, `File`,
+/// and `Tileset`. 
+/// The `File` menu lets you `Generate` a new Wang tiling, `Save` the current image,
+/// or `Quit` the application. 
+///
+/// \image html FileMenu.png width=160
+///
+/// The `Tileset` menu lets you select from some hard-coded tilesets. A checkmark
+/// will appear next to the one that is currently displayed.
+///
+/// \image html TilesetMenu.png width=151
+///
+/// Code Overview
+/// -------------
+///
+/// It is assumed that the reader is familiar with the basics
+/// of Windows programming such as `WinMain`, the Window procedure, message
+/// passing, dialog boxes, and drop-down menus.
+/// Main.cpp contains the mandatory Windows functions wWinMain()
+/// and a Window procedure WndProc(), which share a single global variable
+/// `static CMain* g_pMain`. Most of the other gnarly Windows-specific
+/// code is hidden away in WindowsHelpers.cpp.
+///
+/// The two main classes are
+/// CMain, which encapsulates the main body of the code in the approved object-oriented
+/// fashion, and CWangTiler, which generates an array of tile indices for a 
+/// pseudo-random Wang tiling over 8 tiles.
+/// CMain draws the Wang tiling to a `Gdiplus::Bitmap` using a selected tileset.
+/// This bitmap is drawn to the application window's
+/// client area only on reciept of a `WM_PAINT` message.
+///
+/// Pseudo-randomness is provided by CRandom, which is a straightforward implementation
+/// of `xorshift128`. It is seeded using the Windows MMIO function `timeGetTime`,
+/// which returns the number of milliseconds that have elapsed since Windows was
+/// last rebooted. This ensures that the probability of seeing the same Wang tiling
+///  twice is negligible.
+///
+/// To Do List
+/// ----------
+///
+/// 1. Extend CWangTiler to allow Wang tilings using tilesets with more than 8 tiles.
+/// Each one will require a complete rewrite of CWangTiler::RandomTile().
+/// 2. Add a new version of CWangTiler::RandomTile() for arbitrary sized tilesets made
+/// up of tiles that consist of 4 colored triangles (like the default-style tiles)
+/// by probing the colors of the triangle to determine matches.
+ 
