@@ -7,7 +7,7 @@ The source code for this basic Wang tiling generator, written and maintained by
 extend and modify while they are learning about Wang tiling. Wang tiling is
 a method for tiling the plane using only a small number of tiles, in this case
 8 tiles, in such a way that large repeated patterns are minimized. See 
-[https://ian-parberry.github.io/lindenmayer/](https://ian-parberry.github.io/wangtiler/)
+[https://ian-parberry.github.io/wangtiler/](https://ian-parberry.github.io/wangtiler/)
 for more information.
 
 ## Requirements
