@@ -1,3 +1,5 @@
+![Some examples.](/Doxygen/Images/tilings.png)
+
 # Wang Tiler
 
 The source code for this basic Wang tiling generator, written and maintained by
