@@ -77,6 +77,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam){
         case IDM_FILE_SAVE: //save bitmap to image file       
           SaveBitmap(hWnd, g_pMain->GetBitmap());
           break;
+
+        case IDM_FILE_QUIT: //so long, farewell, auf weidersehn, goodbye!
+          SendMessage(hWnd, WM_CLOSE, 0, 0);
+          break;
       } //switch
 
       return 0; //all is good
