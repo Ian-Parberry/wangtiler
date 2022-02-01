@@ -29,9 +29,7 @@ static CMain* g_pMain = nullptr; ///< Pointer to the main class.
 
 /// \brief Window procedure.
 ///
-/// This is the handler for messages from the operating system. This function
-/// assumes that the menu IDs for the `L-System` menu are consecutive and
-/// run from `IDM_LSYS_BRANCHING` to `IDM_LSYS_HEXGOSPER` (see WindowsHelpers.h).
+/// This is the handler for messages from the operating system.
 /// \param hWnd Window handle.
 /// \param message Message code.
 /// \param wParam Parameter for message.
