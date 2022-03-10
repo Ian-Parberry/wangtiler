@@ -33,24 +33,24 @@
 /// It is assumed that the reader is familiar with the basics
 /// of Windows programming such as `WinMain`, the Window procedure, message
 /// passing, dialog boxes, and drop-down menus.
-/// Main.cpp contains the mandatory Windows functions wWinMain()
-/// and a Window procedure WndProc(), which share a single global variable
+/// `Main.cpp` contains the mandatory Windows functions `wWinMain()`
+/// and a Window procedure `WndProc()`, which share a single global variable
 /// `static CMain* g_pMain`. Most of the other gnarly Windows-specific
-/// code is hidden away in WindowsHelpers.cpp.
+/// code is hidden away in `WindowsHelpers.cpp`.
 ///
 /// The two main classes are
-/// CMain, which encapsulates the main body of the code in the approved object-oriented
-/// fashion, and CWangTiler, which generates an array of tile indices for a 
+/// `CMain`, which encapsulates the main body of the code in the approved object-oriented
+/// fashion, and `CWangTiler`, which generates an array of tile indices for a 
 /// pseudo-random Wang tiling over 8 tiles.
-/// CMain draws the Wang tiling to a `Gdiplus::Bitmap` using a selected tileset.
+/// `CMain` draws the Wang tiling to a `Gdiplus::Bitmap` using a selected tileset.
 /// This bitmap is drawn to the application window's
-/// client area only on reciept of a `WM_PAINT` message.
+/// client area only on receipt of a `WM_PAINT` message.
 ///
-/// Pseudo-randomness is provided by CRandom, which is a straightforward implementation
-/// of `xorshift128`. It is seeded using the Windows MMIO function `timeGetTime`,
+/// Pseudo-randomness is provided by an instance of `std::default_random_engine`
+/// seeded using the Windows MMIO function `timeGetTime`,
 /// which returns the number of milliseconds that have elapsed since Windows was
 /// last rebooted. This ensures that the probability of seeing the same Wang tiling
-///  twice is negligible.
+/// twice is negligible.
 ///
 /// To Do List
 /// ----------
