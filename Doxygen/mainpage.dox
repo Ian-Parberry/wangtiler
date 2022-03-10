@@ -198,12 +198,5 @@
 ///
 /// \image html TilesetMenu.png width=151
 ///
-/// 5. To Do List
-/// ----------
-///
-/// 1. Extend CWangTiler to allow Wang tilings using tilesets with more than 8 tiles.
-/// Each one will require a complete rewrite of CWangTiler::RandomTile().
-/// 2. Add a new version of CWangTiler::RandomTile() for arbitrary sized tilesets made
-/// up of tiles that consist of 4 colored triangles (like the default-style tiles)
-/// by probing the colors of the triangle to determine matches.
+
  
