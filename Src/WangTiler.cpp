@@ -24,13 +24,21 @@
 // IN THE SOFTWARE.
 
 #include "WangTiler.h"
+#include "Includes.h"
 
-/// The constructor allocates memory for the tile array `m_nTile`.
+#pragma comment(lib,"Winmm.lib")
+
+/// Set the pseudo-random number generator seed to `timeGetTime()`, the number
+/// of milliseconds since Windows last rebooted. This should be sufficiently
+/// unpredictable to make a good seed. Allocate memory for the tile array `m_nTile`.
 /// \param w Width in tiles.
 /// \param h Height in tiles.
 
 CWangTiler::CWangTiler(size_t w, size_t h):
-  m_nWidth(w), m_nHeight(h), m_nTile(new UINT*[h]){
+  m_nWidth(w), m_nHeight(h), m_nTile(new UINT*[h])
+{
+  m_stdRandom.seed(timeGetTime()); //reset PRNG
+
   for(size_t i=0; i<h; i++){
     m_nTile[i] = new UINT[w];
 
@@ -39,7 +47,7 @@ CWangTiler::CWangTiler(size_t w, size_t h):
   } //for
 } //constructor
 
-/// The destructor deallocates memory from the tile array `m_nTile`.
+/// Deallocate memory from the tile array `m_nTile`.
 
 CWangTiler::~CWangTiler(){
   for(size_t i=0; i<m_nHeight; i++)
@@ -53,23 +61,27 @@ CWangTiler::~CWangTiler(){
 /// \param y Index of the tile above.
 /// \return Index of a tile that matches tiles above and to the left.
 
-UINT CWangTiler::RandomTile(UINT x, UINT y){
-  return (x&4) ^ (x&1)<<2 | ((y&2) ^ (y&1)<<1) | m_cRandom.randn(0, 1);
-} //RandomTile
+UINT CWangTiler::Match(UINT x, UINT y){
+  std::uniform_int_distribution<UINT> d(0, 1);
+  return (y&4) ^ (y&1)<<2 | (x&2) ^ (x&1)<<1 | d(m_stdRandom);
+} //Match
 
-/// Generate a Wang tiling of the plane into `m_nTile`.
+/// Generate a Wang tiling of width `m_nWidth` and height `m_nHeight` into
+/// `m_nTile` using `m_stdRandom` as a source of randomness.
 
 void CWangTiler::Generate(){
-  m_nTile[0][0] = m_cRandom.randn(0, 7);
+  std::uniform_int_distribution<UINT> d(0, 7);
+
+  m_nTile[0][0] = d(m_stdRandom);
   
   for(size_t j=1; j<m_nWidth; j++)
-    m_nTile[0][j] = RandomTile(m_cRandom.randn(0, 7), m_nTile[0][j - 1]);
+    m_nTile[0][j] = Match(m_nTile[0][j - 1], d(m_stdRandom));
 
   for(size_t i=1; i<m_nHeight; i++){
-    m_nTile[i][0] = RandomTile(m_nTile[i - 1][0], m_cRandom.randn(0, 7));
+    m_nTile[i][0] = Match(d(m_stdRandom), m_nTile[i - 1][0]);
 
     for(size_t j=1; j<m_nWidth; j++)
-      m_nTile[i][j] = RandomTile(m_nTile[i - 1][j], m_nTile[i][j - 1]);
+      m_nTile[i][j] = Match(m_nTile[i][j - 1], m_nTile[i - 1][j]);
   } //for
 } //Generate
 

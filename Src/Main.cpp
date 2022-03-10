@@ -60,7 +60,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam){
       switch(nMenuId){  
         case IDM_TILESET_DEFAULT:
         case IDM_TILESET_FLOWER:
-        case IDM_TILESET_DIRT:
+        case IDM_TILESET_MUD:
+        case IDM_TILESET_GRASS:
           g_pMain->LoadTileSet(nMenuId, 8); //load tile set
           g_pMain->Draw(); //draw with current tiling
           InvalidateRect(hWnd, nullptr, FALSE); //show in window

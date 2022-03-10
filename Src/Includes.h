@@ -23,7 +23,8 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#pragma once
+#ifndef __INCLUDES_H__
+#define __INCLUDES_H__
 
 #pragma comment(lib,"Gdiplus.lib")
 
@@ -34,3 +35,5 @@
 
 #include <cmath>
 #include <string>
+
+#endif //__INCLUDES_H__

@@ -171,7 +171,8 @@ void CMain::CreateMenus(){
 
   AppendMenuW(hMenu, MF_STRING, IDM_TILESET_DEFAULT, L"Default");
   AppendMenuW(hMenu, MF_STRING, IDM_TILESET_FLOWER,  L"Flowers");
-  AppendMenuW(hMenu, MF_STRING, IDM_TILESET_DIRT,    L"Dirt");
+  AppendMenuW(hMenu, MF_STRING, IDM_TILESET_MUD,     L"Mud");
+  AppendMenuW(hMenu, MF_STRING, IDM_TILESET_GRASS,   L"Grass");
 
   AppendMenuW(hMenubar, MF_POPUP, (UINT_PTR)hMenu, L"&Tileset");
 
@@ -215,7 +216,8 @@ HRESULT CMain::LoadTileSet(const UINT idm, const UINT n){
     switch(idm){
       case IDM_TILESET_DEFAULT: filename += L"default"; break;      
       case IDM_TILESET_FLOWER:  filename += L"flowers"; break;
-      case IDM_TILESET_DIRT:    filename += L"dirt";    break;
+      case IDM_TILESET_MUD:     filename += L"mud";     break;
+      case IDM_TILESET_GRASS:   filename += L"grass";   break;
     } //switch
 
     filename += std::wstring(L"\\") + std::to_wstring(i) + L".png";
@@ -243,7 +245,8 @@ HRESULT CMain::LoadTileSet(const UINT idm, const UINT n){
     //unset menu checkmarks then check the one we want
     CheckMenuItem(m_hTilesetMenu, IDM_TILESET_DEFAULT, MF_UNCHECKED);
     CheckMenuItem(m_hTilesetMenu, IDM_TILESET_FLOWER,  MF_UNCHECKED);
-    CheckMenuItem(m_hTilesetMenu, IDM_TILESET_DIRT,    MF_UNCHECKED);
+    CheckMenuItem(m_hTilesetMenu, IDM_TILESET_MUD,     MF_UNCHECKED);
+    CheckMenuItem(m_hTilesetMenu, IDM_TILESET_GRASS,   MF_UNCHECKED);
 
     CheckMenuItem(m_hTilesetMenu, idm, MF_CHECKED);
   } //else

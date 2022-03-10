@@ -41,7 +41,8 @@
 
 #define IDM_TILESET_DEFAULT 4 ///< Menu id for default tileset.
 #define IDM_TILESET_FLOWER 5 ///< Menu id for flower tileset.
-#define IDM_TILESET_DIRT 6 ///< Menu id for dirt tileset.
+#define IDM_TILESET_MUD 6 ///< Menu id for dirt tileset.
+#define IDM_TILESET_GRASS 7 ///< Menu id for grass tileset.
 
 #pragma endregion Menu IDs
 

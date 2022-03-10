@@ -23,15 +23,16 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#pragma once
+#ifndef __WANGTILER_H__
+#define __WANGTILER_H__
 
 #include "Windows.h"
-#include "Random.h"
+#include <random>
 
 /// \brief Wang tiler.
 ///
-/// The Wang tiler generates a pseudorandom rectangular array of tile indices
-///  into a set of 8 Wang tiles that seamlessly tile the plane.
+/// The Wang tiler generates a pseudo-random rectangular array of tile indices
+/// into a set of 8 Wang tiles that seamlessly tile the plane.
 
 class CWangTiler{
   private:
@@ -40,9 +41,9 @@ class CWangTiler{
     size_t m_nWidth = 0; ///< Array width in tiles.
     size_t m_nHeight = 0; ///< Array height in tiles.
     
-    CRandom m_cRandom; ///< PRNG.
+    std::default_random_engine m_stdRandom; ///< Pseudo-random number generator.
     
-    UINT RandomTile(UINT x, UINT y); ///< Choose random tile.
+    UINT Match(UINT x, UINT y); ///< Choose random tile.
 
   public:
     CWangTiler(size_t w, size_t h); ///< Constructor.
@@ -55,3 +56,5 @@ class CWangTiler{
 
     const size_t operator()(size_t i, size_t j) const; ///< Get tile index.
 }; //CWangTiler
+
+#endif //__WANGTILER_H__

@@ -23,7 +23,8 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#pragma once
+#ifndef __CMAIN_H__
+#define __CMAIN_H__
 
 #include "Includes.h"
 #include "WindowsHelpers.h"
@@ -61,3 +62,6 @@ class CMain{
     void OnPaint(); ///< Paint the client area of the window.
     Gdiplus::Bitmap* GetBitmap(); ///< Get pointer to bitmap.
 }; //CMain
+
+
+#endif //__CMAIN_H__

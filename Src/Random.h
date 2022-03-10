@@ -23,7 +23,8 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#pragma once
+#ifndef __RANDOM_H__
+#define __RANDOM_H__
 
 #include "Includes.h"
 
@@ -46,3 +47,5 @@ class CRandom{
     UINT randn(UINT i, UINT j); ///< Get random integer in \f$[i,j]\f$.
     float randf(); ///< Get random floating point number.
 }; //CRandom
+
+#endif //__RANDOM_H__
