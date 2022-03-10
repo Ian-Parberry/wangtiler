@@ -27,16 +27,7 @@ var menudata={children:[
 {text:"Classes",url:"annotated.html",children:[
 {text:"Class List",url:"annotated.html"},
 {text:"Class Members",url:"functions.html",children:[
-{text:"All",url:"functions.html",children:[
-{text:"c",url:"functions.html#index_c"},
-{text:"d",url:"functions.html#index_d"},
-{text:"g",url:"functions.html#index_g"},
-{text:"l",url:"functions.html#index_l"},
-{text:"m",url:"functions.html#index_m"},
-{text:"o",url:"functions.html#index_o"},
-{text:"r",url:"functions.html#index_r"},
-{text:"s",url:"functions.html#index_s"},
-{text:"~",url:"functions.html#index__7E"}]},
+{text:"All",url:"functions.html"},
 {text:"Functions",url:"functions_func.html"},
 {text:"Variables",url:"functions_vars.html"}]}]},
 {text:"Files",url:"files.html",children:[
