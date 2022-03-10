@@ -22,14 +22,12 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Src\CMain.h" />
     <ClInclude Include="Src\Includes.h" />
-    <ClInclude Include="Src\Random.h" />
     <ClInclude Include="Src\WangTiler.h" />
     <ClInclude Include="Src\WindowsHelpers.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\CMain.cpp" />
     <ClCompile Include="Src\Main.cpp" />
-    <ClCompile Include="Src\Random.cpp" />
     <ClCompile Include="Src\WangTiler.cpp" />
     <ClCompile Include="Src\WindowsHelpers.cpp" />
   </ItemGroup>

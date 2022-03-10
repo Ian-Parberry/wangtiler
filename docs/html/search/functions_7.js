@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['savebitmap_0',['SaveBitmap',['../_windows_helpers_8cpp.html#abcbcd456d1d87a2063d358460e5ec0aa',1,'SaveBitmap(HWND hwnd, Gdiplus::Bitmap *pBitmap):&#160;WindowsHelpers.cpp'],['../_windows_helpers_8h.html#a1cb7feb5f1f8c6485b074189db2719b8',1,'SaveBitmap(HWND, Gdiplus::Bitmap *):&#160;WindowsHelpers.cpp']]],
-  ['srand_1',['srand',['../class_c_random.html#ab1ebcea7873a03b1a7318f866333e731',1,'CRandom']]]
+  ['randf_83',['randf',['../class_c_random.html#a21c37e0b827c7fcb4ea641c5ccce7cd9',1,'CRandom']]],
+  ['randn_84',['randn',['../class_c_random.html#aa2d7791dd8f47e75761ab8adb55890fc',1,'CRandom::randn()'],['../class_c_random.html#a36af7cbd68d43af54a971e4f00445b52',1,'CRandom::randn(UINT i, UINT j)']]]
 ];
