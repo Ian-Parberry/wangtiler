@@ -75,7 +75,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><div class="image">
-<img src="tilings.png" alt="" width="800"/>
+<img src="tilings.png" alt="" width="1000"/>
 <div class="caption">
 Fig. 1: Wang tilings with, from left to right, default, flower, mud, and grass tiles.</div></div>
 <h2>1. Introduction </h2>
@@ -152,11 +152,19 @@ Fig. 3: The 4-bit form of tile GBRY is 0011.</div></div>
 <td align="center">7</td><td align="center"><span style="color: red">11</span><span style="color: blue">1</span></td><td align="center"><span style="color: red">11</span></td><td align="center"><span style="color: blue">1</span></td><td align="center"><span style="color: brown">0</span></td><td align="center"><span style="color: orange">0</span></td><td align="center"><span style="color: red">11</span><span style="color: brown">0</span><span style="color: orange">0</span></td><td align="center">RYGB </td></tr>
 </table>
 </center><h3>3.4 Tiling the Grid</h3>
-<p >Function <code><a class="el" href="class_c_wang_tiler.html#a0ae5a109c64e6e4fe9455e41912b552f" title="Generate tiling.">CWangTiler::Generate()</a></code> tiles the grid in row-major order, that is, from left-to-right across each row, from the top row to the bottom. During each iteration a tile must be chosen matching the colors of the existing tiles above and to the left of the current grid position. That is, the top and left colors of the current tile are fixed by the bottom color of the tile above and the right color of the tile to the left. Notice, by examining the tiles in Fig. 2, there are exactly two tiles for every choice of top and left colors. Exactly which of the two candidate tiles is used can be chosen pseudo-randomly as shown in Fig. 4.</p>
+<p >Function <code><a class="el" href="class_c_wang_tiler.html#a0ae5a109c64e6e4fe9455e41912b552f" title="Generate tiling.">CWangTiler::Generate()</a></code> tiles the grid in row-major order, that is, from left-to-right across each row, from the top row to the bottom. During each iteration a tile must be chosen matching the colors of the existing tiles above and to the left of the current grid position. That is, the top and left colors of the current tile are fixed by the bottom color of the tile above and the right color of the tile to the left. Notice, that the following property holds for the tile set in Fig. 2:</p>
+<blockquote class="doxtable">
+<p >Key Fact 1: For every choice of top and left colors there are exactly two tiles that match. </p>
+</blockquote>
+<p>Exactly which of the two candidate tiles is used can be chosen pseudo-randomly as shown in Fig. 4.</p>
 <div class="image">
 <img src="flip.png" alt="" width="360"/>
 <div class="caption">
 Fig. 4: There are exactly 2 choices for a tile once its top and left colors have been fixed.</div></div>
+<blockquote class="doxtable">
+<p >Key Fact 2: Of the two matching tiles in Key Fact 1, one will have its bottom and right colors equal to the top and left colors, respectively, and the other will have its bottom and right colors the opposite of the top and left colors, respectively. </p>
+</blockquote>
+<p>For example, in Fig. 3 of the two candidate tiles on the right with top red and left yellow, the top one has identical bottom and right colors (bottom red and right yellow) while the bottom one has flipped bottom and right colors (bottom green and right blue). Key Fact 2 is the reason why we were able to get by with computing just one parity bit in Table 1 instead of two: if one of the bottom or right colors is flipped then they both are.</p>
 <h3>3.5 Choosing the Next Tile</h3>
 <p >Suppose the tile above the current grid position has index \(y = y_2y_1y_0\), the tile to the left has index \(x = x_2x_1x_0\), and we need a matching tile with index \(z = z_2z_1z_0\). Its top color \(z_2\) must equal the top tile's bottom color, which is \(y_2 \oplus y_0\). In code that would be <code>(y&amp;4)^(y&amp;1)&lt;&lt;2</code> (note that <code>&lt;&lt;</code> has higher precedence than <code>^</code>). Its left color \(z_1\) must equal the left tile's right color, which is \(x_1 \oplus x_0\). In code that would be <code>(x&amp;2)^(x&amp;1)&lt;&lt;1</code>. The remaining bit \(z_0\) can be chosen pseudo-randomly. This is implemented in <code><a class="el" href="class_c_wang_tiler.html#a678160809616a2877a4f57c39e7dd7d6" title="Choose random tile.">CWangTiler::Match()</a></code>. See Section 3.3 above for more details.</p>
 <h2>4. The User Interface </h2>
@@ -172,7 +180,7 @@ Fig. 4: There are exactly 2 choices for a tile once its top and left colors have
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 10 2022 15:59:54 for Wang Tiling by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+Generated on Thu Mar 10 2022 17:47:01 for Wang Tiling by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
 </small></address>
 </body>
 </html>

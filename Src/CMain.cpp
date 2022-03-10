@@ -41,7 +41,7 @@ CMain::CMain(const HWND hwnd):
 {
   m_gdiplusToken = InitGDIPlus(); //initialize GDI+
   CreateMenus(); //create the menu bar
-  m_pWangTiler = new CWangTiler(16, 16); //create the Wang tiler
+  m_pWangTiler = new CWangTiler(8, 8); //create the Wang tiler
   
   if(FAILED(LoadTileSet(IDM_TILESET_DEFAULT, 8))) //load the default tile set
     FatalAppExit(0, "One or more default tileset images are missing.");
