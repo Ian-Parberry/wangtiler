@@ -158,7 +158,7 @@ Fig. 3: The 4-bit form of tile GBRY is 0011.</div></div>
 <div class="caption">
 Fig. 4: There are exactly 2 choices for a tile once its top and left colors have been fixed.</div></div>
 <h3>3.5 Choosing the Next Tile</h3>
-<p >Suppose the tile above the current grid position has index \(y = y_2y_1y_0\), the tile to the left has index \(x = x_2x_1x_0\), and we need a matching tile with index \(z = z_2z_1z_0\). Its top color \(z_2\) must equal the top tile's bottom color, which is \(y_2 \oplus y_0\). In code that would be <code>(y&amp;4)^(y&amp;1)&lt;&lt;2</code> (note that <code>&lt;&lt;</code> has higher precedence than <code>^</code>). Its left color \(z_1\) must equal the left tile's right color, which is \(x_1 \oplus x_0\). In code that would be <code>(x&amp;2)^(x&amp;1)&lt;&lt;1</code>. The remaining bit \(z_0\) can be chosen pseudo-randomly. This is implemented in <code><a class="el" href="class_c_wang_tiler.html#a678160809616a2877a4f57c39e7dd7d6" title="Choose random tile.">CWangTiler::Match()</a></code></p>
+<p >Suppose the tile above the current grid position has index \(y = y_2y_1y_0\), the tile to the left has index \(x = x_2x_1x_0\), and we need a matching tile with index \(z = z_2z_1z_0\). Its top color \(z_2\) must equal the top tile's bottom color, which is \(y_2 \oplus y_0\). In code that would be <code>(y&amp;4)^(y&amp;1)&lt;&lt;2</code> (note that <code>&lt;&lt;</code> has higher precedence than <code>^</code>). Its left color \(z_1\) must equal the left tile's right color, which is \(x_1 \oplus x_0\). In code that would be <code>(x&amp;2)^(x&amp;1)&lt;&lt;1</code>. The remaining bit \(z_0\) can be chosen pseudo-randomly. This is implemented in <code><a class="el" href="class_c_wang_tiler.html#a678160809616a2877a4f57c39e7dd7d6" title="Choose random tile.">CWangTiler::Match()</a></code>. See Section 3.3 above for more details.</p>
 <h2>4. The User Interface </h2>
 <p >The user interface consists of two drop-down menus, <code>File</code>, and <code>Tileset</code>. The <code>File</code> menu lets you <code>Generate</code> a new Wang tiling, <code>Save</code> the current image, or <code>Quit</code> the application.</p>
 <div class="image">
@@ -172,7 +172,7 @@ Fig. 4: There are exactly 2 choices for a tile once its top and left colors have
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 10 2022 15:57:50 for Wang Tiling by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+Generated on Thu Mar 10 2022 15:59:54 for Wang Tiling by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
 </small></address>
 </body>
 </html>
