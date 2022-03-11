@@ -50,7 +50,7 @@
 /// > “Wang tiles for image and texture generation,” ACM Transactions on Graphics,
 /// > Vol. 22, No. 3, pp. 287-294, 2003. 
 ///
-/// \image html tileset.png "Fig. 2: The eight default tiles with their indices." width=280
+/// \image html tileset.png "Fig. 2: The eight default tiles with their indices." width=560
 ///
 /// The flower tiles in Fig. 1, second from left, were created by
 /// [Ian Parberry](http://ianparberry.com) by hand.
