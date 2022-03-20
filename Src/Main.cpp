@@ -23,6 +23,8 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
+#include "Includes.h"
+
 #include "CMain.h"
 
 static CMain* g_pMain = nullptr; ///< Pointer to the main class.
@@ -58,14 +60,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam){
       nMenuId = LOWORD(wParam); //menu id
 
       switch(nMenuId){  
-        case IDM_TILESET_DEFAULT:
-        case IDM_TILESET_FLOWER:
-        case IDM_TILESET_MUD:
-        case IDM_TILESET_GRASS:
-          g_pMain->LoadTileSet(nMenuId, 8); //load tile set
-          g_pMain->Draw(); //draw with current tiling
-          InvalidateRect(hWnd, nullptr, FALSE); //show in window
-          break;
 
         case IDM_FILE_GENERATE:
           g_pMain->Generate();
@@ -79,6 +73,27 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam){
 
         case IDM_FILE_QUIT: //so long, farewell, auf weidersehn, goodbye!
           SendMessage(hWnd, WM_CLOSE, 0, 0);
+          break;
+
+        case IDM_TILESET_DEFAULT:
+        case IDM_TILESET_FLOWER:
+        case IDM_TILESET_MUD:
+        case IDM_TILESET_GRASS:
+          g_pMain->LoadTileSet(nMenuId, 8); //load tile set
+          g_pMain->Draw(); //draw with current tiling
+          InvalidateRect(hWnd, nullptr, FALSE); //show in window
+          break;
+
+        case IDM_HELP_HELP:
+          ShellExecute(0, 0, 
+            "https://ian-parberry.github.io/wangtiler/html/", 
+            0, 0, SW_SHOW);
+          break;
+
+        case IDM_HELP_ABOUT:     
+          MessageBox(nullptr, 
+            "Copyright © Ian Parberry, 2022.\nSource code available under the MIT License from https://github.com/Ian-Parberry/wangtiler.", 
+            "About", MB_ICONINFORMATION | MB_OK);
           break;
       } //switch
 

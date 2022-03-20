@@ -158,23 +158,25 @@ void CMain::Draw(){
 
 void CMain::CreateMenus(){
   HMENU hMenubar = CreateMenu();
-  HMENU hMenu = CreateMenu();
-  
+  HMENU hMenu = CreateMenu(); 
+
   AppendMenuW(hMenu, MF_STRING, IDM_FILE_GENERATE, L"&Generate");
   AppendMenuW(hMenu, MF_STRING, IDM_FILE_SAVE,     L"Save...");
   AppendMenuW(hMenu, MF_STRING, IDM_FILE_QUIT,     L"Quit");
-
   AppendMenuW(hMenubar, MF_POPUP, (UINT_PTR)hMenu, L"&File");
   
   hMenu = CreateMenu();
   m_hTilesetMenu = hMenu;
-
   AppendMenuW(hMenu, MF_STRING, IDM_TILESET_DEFAULT, L"Default");
   AppendMenuW(hMenu, MF_STRING, IDM_TILESET_FLOWER,  L"Flowers");
   AppendMenuW(hMenu, MF_STRING, IDM_TILESET_MUD,     L"Mud");
   AppendMenuW(hMenu, MF_STRING, IDM_TILESET_GRASS,   L"Grass");
-
   AppendMenuW(hMenubar, MF_POPUP, (UINT_PTR)hMenu, L"&Tileset");
+  
+  hMenu = CreateMenu();
+  AppendMenuW(hMenu, MF_STRING, IDM_HELP_HELP, L"Display help...");
+  AppendMenuW(hMenu, MF_STRING, IDM_HELP_ABOUT, L"About...");
+  AppendMenuW(hMenubar, MF_POPUP, (UINT_PTR)hMenu, L"&Help");
 
   SetMenu(m_hWnd, hMenubar);
 } //CreateMenus

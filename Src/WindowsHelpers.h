@@ -26,7 +26,8 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#pragma once
+#ifndef __WINDOWSHELPERS_H__
+#define __WINDOWSHELPERS_H__
 
 #include "Includes.h"
 
@@ -43,6 +44,9 @@
 #define IDM_TILESET_FLOWER 5 ///< Menu id for flower tileset.
 #define IDM_TILESET_MUD 6 ///< Menu id for dirt tileset.
 #define IDM_TILESET_GRASS 7 ///< Menu id for grass tileset.
+
+#define IDM_HELP_HELP  8 ///< Menu id for display help.
+#define IDM_HELP_ABOUT 9 ///< Menu id for display About info.
 
 #pragma endregion Menu IDs
 
@@ -61,3 +65,5 @@ ULONG_PTR InitGDIPlus(); ///< Initialize GDI+.
 HRESULT SaveBitmap(HWND, Gdiplus::Bitmap*); ///< Save bitmap to file.
 
 #pragma endregion Helper functions
+
+#endif //__WINDOWSHELPERS_H__
