@@ -1,6 +1,6 @@
 /// \mainpage
 ///
-/// \image html tilings.png  "Fig. 1: Wang tilings with, from left to right, default, flower, mud, and grass tiles." width=1000
+/// \image html tilings.png  "Fig. 1: Wang tilings with, from left to right, default, flower, mud, and grass tiles." width=100%
 ///
 /// 1. Introduction
 /// ------------
@@ -12,7 +12,31 @@
 /// 8 tiles, in such a way that large repeated patterns are minimized. See
 /// https://en.wikipedia.org/wiki/Wang_tile for more information.
 ///
-/// 2. Code Overview
+/// 2. The Controls
+/// ------------------
+///
+/// The controls consist of three drop-down menus, `File`,
+/// `Tileset`, and `Help`. 
+/// The `File` menu lets you `Generate` a new Wang tiling, `Save` the current image,
+/// or `Quit` the application. 
+///
+/// \image html FileMenu.png width=160
+///
+/// The `Tileset` menu lets you select from some hard-coded tile sets. A checkmark
+/// will appear next to the one that is currently displayed. See Fig. 1 for some examples.
+///
+/// \image html TilesetMenu.png width=151
+///
+/// The `Help` menu has two entries. The first is `Display help` which opens up this
+/// documentation in a browser.
+///
+/// \image html HelpMenu.png 
+///
+/// The second entry in the `Help` menu is `About`, which displays the `About` dialog box.
+///
+/// \image html about.png width=350
+///
+/// 3. Code Overview
 /// -------------
 ///
 /// It is assumed that the reader is familiar with the basics
@@ -37,29 +61,33 @@
 /// last rebooted. This ensures that the probability of seeing the same Wang tiling
 /// twice is negligible.
 ///
-/// 3. The Main Ideas
+/// 4. The Main Ideas
 /// --------------
 ///
 /// The 8 tiles in the default tile set are depicted below in Fig. 2. The tiles are
 /// indexed 0 through 7 and the index is used as a file name, for example, tile 0
-/// can be found in `tiles\default\0.png`. The indexes have been chosen carefully
+/// can be found in `tiles\default\0.png`. As we will see in the remainder
+/// of this section, the indexes have been chosen carefully
 /// so that their binary representation uniquely identifies the tile colors.
 /// This is the set of stochastic Wang tiles from
 ///
 /// > M.F. Cohen, J. Shade, S. Hiller, and O. Deussen, 
-/// > “Wang tiles for image and texture generation,” ACM Transactions on Graphics,
+/// > "Wang tiles for image and texture generation," 
+/// > _ACM Transactions on Graphics_,
 /// > Vol. 22, No. 3, pp. 287-294, 2003. 
 ///
 /// \image html tileset.png "Fig. 2: The eight default tiles with their indices." width=560
 ///
 /// The flower tiles in Fig. 1, second from left, were created by
 /// [Ian Parberry](http://ianparberry.com) by hand.
-/// The remaining tile sets were created using the quilting algorithm from:
+/// The remaining tilesets were created using the quilting algorithm from:
 ///
 /// > A. A. Efros and W.T. Freeman, 
-/// > "Image Quilting for Texture Synthesis and Transfer", ACM SIGGRAPH 2001.
+/// > "Image quilting for texture synthesis and transfer",
+/// > In _Proceedings of the 28th Annual Conference on Computer Graphics and 
+/// > Interactive Techniques_, pp. 341-346, 2001.
 /// 
-/// ### 3.1 Alphabetic and 4-bit Tile Representations
+/// ### 4.1 Alphabetic and 4-bit Tile Representations
 ///
 /// The default tile colors in Fig. 2 are green, blue, red, and yellow.
 /// A tile can be described
@@ -77,7 +105,7 @@
 ///
 /// \image html rawbinary.png "Fig. 3: The 4-bit form of tile GBRY is 0011." width=160
 ///
-/// ### 3.2 Getting 3-bit Tile Indexes From Alphabetic Representations
+/// ### 4.2 Getting 3-bit Tile Indexes From Alphabetic Representations
 ///
 /// The 4-bit representation is not ideal since 4 bits can describe
 /// 16 things whereas we have only 8 tiles. A compact 3-bit index can be obtained from a
@@ -87,7 +115,7 @@
 /// top and left colors, respectively, have been indicated in 
 /// <span style="color: red">red</span> and have been copied
 /// to the third column of the table. Suppose the 4-bit representation of a tile
-/// is \f$x_3x_2x_1x_0\f$, where \f$x_i \in\{0,1\}\f$ for \f$0 <=i < 4\f$.
+/// is \f$x_3x_2x_1x_0\f$, where \f$x_i \in\{0,1\}\f$ for \f$0 \leq i < 4\f$.
 /// Notice that \f$x_3\f$ corresponds to the top color and \f$x_1\f$ corresponds
 /// to the bottom color. The fourth column of Table 1 contains \f$x_3 \oplus x_1\f$,
 /// where \f$\oplus\f$ is the exclusive-or operator, which is 1 iff exactly one
@@ -103,7 +131,7 @@
 ///
 /// <center>
 /// <table>
-/// <caption id="index">Table 1: Tile indexes from colors.</caption>
+/// <caption>Table 1: Tile indexes from colors.</caption>
 /// <tr><th>Colors<th>4-bit<th>Top Left<th>Top \f$\oplus\f$ Bottom<th>3-bit Index<th>Index
 /// <tr><td align=center>GBGB <td align=center><span style="color: red">00</span>00 <td align=center><span style="color: red">00</span> <td align=center><span style="color: blue">0</span> <td align=center><span style="color: red">00</span><span style="color: blue">0</span> <td align=center>0
 /// <tr><td align=center>GBRY<td align=center><span style="color: red">00</span>11<td align=center><span style="color: red">00</span><td align=center><span style="color: blue">1</span><td align=center><span style="color: red">00</span><span style="color: blue">1</span><td align=center>1
@@ -116,7 +144,7 @@
 /// </table>
 /// </center>
 ///
-/// ### 3.3 Getting Alphabetic Representations From 3-bit Tile Indexes
+/// ### 4.3 Getting Alphabetic Representations From 3-bit Tile Indexes
 ///
 /// The process described in the previous section
 /// may be inverted, that is, the colors of the tile with a given
@@ -129,7 +157,7 @@
 ///  is the parity bit shown in Column 4 of
 /// Table 1, that is, the exclusive-or of the top and bottom colors.
 /// Suppose the 3-bit representation of a tile is
-/// \f$y_2y_1y_0\f$, where \f$y_i \in\{0,1\}\f$ for \f$0 <=i < 3\f$.
+/// \f$y_2y_1y_0\f$, where \f$y_i \in\{0,1\}\f$ for \f$0 \leq i < 3\f$.
 /// Column 5 lists \f$y_2 \oplus y_0\f$, which is the bottom color of the tile.
 /// These entries are draw in <span style="color: brown">brown</span>.
 /// Column 6 lists \f$y_1 \oplus y_0\f$, which is the right color of the tile.
@@ -142,12 +170,12 @@
 ///
 /// <center>
 /// <table>
-/// <caption id="index">Table 2: Tile colors from indexes.</caption>
+/// <caption>Table 2: Tile colors from indexes.</caption>
 /// <tr><th>Index<th>3-bit Index<th>Top Left<th>Parity<th>Top \f$\oplus\f$ Parity<th>Left \f$\oplus\f$ Parity<th>4-bit<th>Colors
 /// <tr><td align=center>0<td align=center><span style="color: red">00</span><span style="color: blue">0</span><td align=center><span style="color: red">00</span><td align=center><span style="color: blue">0</span><td align=center><span style="color: brown">0</span><td align=center><span style="color: orange">0</span><td align=center><span style="color: red">00</span><span style="color: brown">0</span><span style="color: orange">0</span><td align=center>GBGB
 /// <tr><td align=center>1<td align=center><span style="color: red">00</span><span style="color: blue">1</span><td align=center><span style="color: red">00</span><td align=center><span style="color: blue">1</span><td align=center><span style="color: brown">1</span><td align=center><span style="color: orange">1</span><td align=center><span style="color: red">00</span><span style="color: brown">1</span><span style="color: orange">1</span><td align=center>GBRY
 /// <tr><td align=center>2<td align=center><span style="color: red">01</span><span style="color: blue">0</span><td align=center><span style="color: red">01</span><td align=center><span style="color: blue">0</span><td align=center><span style="color: brown">0</span><td align=center><span style="color: orange">1</span><td align=center><span style="color: red">01</span><span style="color: brown">0</span><span style="color: orange">1</span><td align=center>GYGY
-/// <tr><td align=center>3<td align=center><span style="color: red">01</span><span style="color: blue">1</span><td align=center><span style="color: red">01</span></span><td align=center><span style="color: blue">1</span><td align=center><span style="color: brown">1</span><td align=center><span style="color: orange">0</span><td align=center><span style="color: red">01</span><span style="color: brown">1</span><span style="color: orange">0</span><td align=center>GYRB
+/// <tr><td align=center>3<td align=center><span style="color: red">01</span><span style="color: blue">1</span><td align=center><span style="color: red">01</span><td align=center><span style="color: blue">1</span><td align=center><span style="color: brown">1</span><td align=center><span style="color: orange">0</span><td align=center><span style="color: red">01</span><span style="color: brown">1</span><span style="color: orange">0</span><td align=center>GYRB
 /// <tr><td align=center>4<td align=center><span style="color: red">10</span><span style="color: blue">0</span><td align=center><span style="color: red">10</span><td align=center><span style="color: blue">0</span><td align=center><span style="color: brown">1</span><td align=center><span style="color: orange">0</span><td align=center><span style="color: red">10</span><span style="color: brown">1</span><span style="color: orange">0</span><td align=center>RBRB
 /// <tr><td align=center>5<td align=center><span style="color: red">10</span><span style="color: blue">1</span><td align=center><span style="color: red">10</span><td align=center><span style="color: blue">1</span><td align=center><span style="color: brown">0</span><td align=center><span style="color: orange">1</span><td align=center><span style="color: red">10</span><span style="color: brown">0</span><span style="color: orange">1</span><td align=center>RBGY
 /// <tr><td align=center>6<td align=center><span style="color: red">11</span><span style="color: blue">0</span><td align=center><span style="color: red">11</span><td align=center><span style="color: blue">0</span><td align=center><span style="color: brown">1</span><td align=center><span style="color: orange">1</span><td align=center><span style="color: red">11</span><span style="color: brown">1</span><span style="color: orange">1</span><td align=center>RYRY
@@ -155,7 +183,7 @@
 /// </table>
 /// </center>
 ///
-/// ### 3.4 Tiling the Grid
+/// ### 4.4 Tiling the Grid
 ///
 /// Function `CWangTiler::Generate()` tiles the grid in row-major order,
 /// that is, from left-to-right across each row, from the top row to the bottom.
@@ -188,34 +216,24 @@
 /// parity bit in Table 1 instead of two: if one of the bottom or right colors
 /// is flipped then they both are.
 ///
-/// ### 3.5 Choosing the Next Tile
+/// ### 4.5 Choosing the Next Tile
 ///
-/// Suppose the tile above the current grid position has index \f$y = y_2y_1y_0\f$,
-/// the tile to the left has index \f$x = x_2x_1x_0\f$, 
-/// and we need a matching tile with index \f$z = z_2z_1z_0\f$.
+/// Suppose the tile above the current grid position has index \f$y\f$,
+/// the tile to the left has index \f$x\f$, 
+/// and we need a matching tile with index \f$z\f$.
+/// Let \f$y_2y_1y_0\f$ be the binary representation of \f$y\f$, that is,
+/// \f$y = 4y_2+2y_1+y_0\f$. Similarly, let
+/// \f$x_2x_1x_0\f$ be the binary representation of \f$x\f$ and
+/// \f$z_2z_1z_0\f$ be the binary representation of \f$z\f$.
+/// Consider the choices for the tile in the current grid position,
+/// which is constrained by the colors of the tile above it and the tile to its left.
 /// Its top color \f$z_2\f$ must equal the top tile's bottom color, which
 /// is \f$y_2 \oplus y_0\f$. In code that would be
-/// `(y&4)^(y&1)<<2` (note that `<<` has higher precedence than `^`).
+/// `(y&4)^(y&1)<<2` (noting that `<<` has higher precedence than `^`).
 /// Its left color \f$z_1\f$ must equal the left tile's right color, which
 /// is \f$x_1 \oplus x_0\f$. In code that would be
 /// `(x&2)^(x&1)<<1`. The remaining bit \f$z_0\f$ can be chosen pseudo-randomly.
-/// This is implemented in `CWangTiler::Match()`. See Section 3.3 above
+/// This is implemented in `CWangTiler::Match()`. Refer back to Section 4.3
 /// for more details.
-///
-/// 4. The User Interface
-/// ------------------
-///
-/// The user interface consists of two drop-down menus, `File`,
-/// and `Tileset`. 
-/// The `File` menu lets you `Generate` a new Wang tiling, `Save` the current image,
-/// or `Quit` the application. 
-///
-/// \image html FileMenu.png width=160
-///
-/// The `Tileset` menu lets you select from some hard-coded tilesets. A checkmark
-/// will appear next to the one that is currently displayed. See Fig. 1 for some examples.
-///
-/// \image html TilesetMenu.png width=151
-///
 
  

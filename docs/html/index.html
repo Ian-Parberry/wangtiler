@@ -75,38 +75,54 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><div class="image">
-<img src="tilings.png" alt="" width="1000"/>
+<img src="tilings.png" alt="" width="100%"/>
 <div class="caption">
 Fig. 1: Wang tilings with, from left to right, default, flower, mud, and grass tiles.</div></div>
 <h2>1. Introduction </h2>
 <p >The source code for this basic Wang tiling generator, written and maintained by <a href="http://ianparberry.com">Ian Parberry</a>, is intended to be used by students to extend and modify while they are learning about Wang tiling. Wang tiling is a method for tiling the plane using only a small number of tiles, in this case 8 tiles, in such a way that large repeated patterns are minimized. See <a href="https://en.wikipedia.org/wiki/Wang_tile">https://en.wikipedia.org/wiki/Wang_tile</a> for more information.</p>
-<h2>2. Code Overview </h2>
+<h2>2. The Controls </h2>
+<p >The controls consist of three drop-down menus, <code>File</code>, <code>Tileset</code>, and <code>Help</code>. The <code>File</code> menu lets you <code>Generate</code> a new Wang tiling, <code>Save</code> the current image, or <code>Quit</code> the application.</p>
+<div class="image">
+<img src="FileMenu.png" alt="" width="160"/>
+</div>
+<p >The <code>Tileset</code> menu lets you select from some hard-coded tile sets. A checkmark will appear next to the one that is currently displayed. See Fig. 1 for some examples.</p>
+<div class="image">
+<img src="TilesetMenu.png" alt="" width="151"/>
+</div>
+<p >The <code>Help</code> menu has two entries. The first is <code>Display help</code> which opens up this documentation in a browser.</p>
+<div class="image">
+<img src="HelpMenu.png" alt=""/>
+</div>
+<p >The second entry in the <code>Help</code> menu is <code>About</code>, which displays the <code>About</code> dialog box.</p>
+<div class="image">
+<img src="about.png" alt="" width="350"/>
+</div>
+<h2>3. Code Overview </h2>
 <p >It is assumed that the reader is familiar with the basics of Windows programming such as <code>WinMain</code>, the Window procedure, message passing, dialog boxes, and drop-down menus. <code><a class="el" href="_main_8cpp.html" title="The window procedure WndProc(), and wWinMain().">Main.cpp</a></code> contains the mandatory Windows functions <code><a class="el" href="_main_8cpp.html#ad7483c50ba0ceb8cee64426d4e7e9bb3" title="Winmain.">wWinMain()</a></code> and a Window procedure <code><a class="el" href="_main_8cpp.html#a30a1e3b0304f1b083637664cbda94e72" title="Window procedure.">WndProc()</a></code>, which share a single global variable <code>static CMain* g_pMain</code>. Most of the other gnarly Windows-specific code is hidden away in <code><a class="el" href="_windows_helpers_8cpp.html" title="Code for some helpful Windows-specific functions.">WindowsHelpers.cpp</a></code>.</p>
 <p >The two main classes are <code><a class="el" href="class_c_main.html" title="The main class.">CMain</a></code>, which encapsulates the main body of the code in the approved object-oriented fashion, and <code><a class="el" href="class_c_wang_tiler.html" title="Wang tiler.">CWangTiler</a></code>, which generates an array of tile indices for a pseudo-random Wang tiling over 8 tiles. <code><a class="el" href="class_c_main.html" title="The main class.">CMain</a></code> draws the Wang tiling to a <code>Gdiplus::Bitmap</code> using a selected tileset. This bitmap is drawn to the application window's client area only on receipt of a <code>WM_PAINT</code> message.</p>
 <p >Pseudo-randomness is provided by an instance of <code>std::default_random_engine</code> seeded using the Windows MMIO function <code>timeGetTime</code>, which returns the number of milliseconds that have elapsed since Windows was last rebooted. This ensures that the probability of seeing the same Wang tiling twice is negligible.</p>
-<h2>3. The Main Ideas </h2>
-<p >The 8 tiles in the default tile set are depicted below in Fig. 2. The tiles are indexed 0 through 7 and the index is used as a file name, for example, tile 0 can be found in <code>tiles\default\0.png</code>. The indexes have been chosen carefully so that their binary representation uniquely identifies the tile colors. This is the set of stochastic Wang tiles from</p>
+<h2>4. The Main Ideas </h2>
+<p >The 8 tiles in the default tile set are depicted below in Fig. 2. The tiles are indexed 0 through 7 and the index is used as a file name, for example, tile 0 can be found in <code>tiles\default\0.png</code>. As we will see in the remainder of this section, the indexes have been chosen carefully so that their binary representation uniquely identifies the tile colors. This is the set of stochastic Wang tiles from</p>
 <blockquote class="doxtable">
-<p >M.F. Cohen, J. Shade, S. Hiller, and O. Deussen, “Wang tiles for image and texture generation,” ACM Transactions on Graphics, Vol. 22, No. 3, pp. 287-294, 2003.  </p>
+<p >M.F. Cohen, J. Shade, S. Hiller, and O. Deussen, "Wang tiles for image and texture generation,"  <em>ACM Transactions on Graphics</em>, Vol. 22, No. 3, pp. 287-294, 2003.  </p>
 </blockquote>
 <div class="image">
 <img src="tileset.png" alt="" width="560"/>
 <div class="caption">
 Fig. 2: The eight default tiles with their indices.</div></div>
-<p >The flower tiles in Fig. 1, second from left, were created by <a href="http://ianparberry.com">Ian Parberry</a> by hand. The remaining tile sets were created using the quilting algorithm from:</p>
+<p >The flower tiles in Fig. 1, second from left, were created by <a href="http://ianparberry.com">Ian Parberry</a> by hand. The remaining tilesets were created using the quilting algorithm from:</p>
 <blockquote class="doxtable">
-<p >A. A. Efros and W.T. Freeman, "Image Quilting for Texture Synthesis and Transfer", ACM SIGGRAPH 2001. </p>
+<p >A. A. Efros and W.T. Freeman, "Image quilting for texture synthesis and transfer", In <em>Proceedings of the 28th Annual Conference on Computer Graphics and Interactive Techniques</em>, pp. 341-346, 2001. </p>
 </blockquote>
-<h3>3.1 Alphabetic and 4-bit Tile Representations</h3>
+<h3>4.1 Alphabetic and 4-bit Tile Representations</h3>
 <p >The default tile colors in Fig. 2 are green, blue, red, and yellow. A tile can be described by listing the first letter of the colors of each triangle counter-clockwise starting at the top. For example, the tile shown in Fig. 3 (which has index 1) can be described in alphabetic form as GBRY. Note that red and green can only appear at the top and bottom, and blue and yellow can only appear at the left and right (examine the tiles in Fig. 2). We can therefore assign green and blue bit 0, and red and yellow bit 1 without ambiguity. Each 4-letter tile description can then be replaced by the unique 4-bit number obtained by replacing each color with its corresponding bit, for example, GBRY can be replaced by 0011 (see Fig. 3).</p>
 <div class="image">
 <img src="rawbinary.png" alt="" width="160"/>
 <div class="caption">
 Fig. 3: The 4-bit form of tile GBRY is 0011.</div></div>
-<h3>3.2 Getting 3-bit Tile Indexes From Alphabetic Representations</h3>
-<p >The 4-bit representation is not ideal since 4 bits can describe 16 things whereas we have only 8 tiles. A compact 3-bit index can be obtained from a 4-bit number as follows. The first column of Table 1 below lists the 8 tiles in alphabetic form, with the corresponding 4-bit representation in the second column. Notice that the first two bits, which represent the top and left colors, respectively, have been indicated in <span style="color: red">red</span> and have been copied to the third column of the table. Suppose the 4-bit representation of a tile is \(x_3x_2x_1x_0\), where \(x_i \in\{0,1\}\) for \(0 &lt;=i &lt; 4\). Notice that \(x_3\) corresponds to the top color and \(x_1\) corresponds to the bottom color. The fourth column of Table 1 contains \(x_3 \oplus x_1\), where \(\oplus\) is the exclusive-or operator, which is 1 iff exactly one of its arguments is 1 and the other 0 and is implemented in C++ as <code>operator^</code>. Column four this contains the exclusive-or of the top and bottom colors of the tile. Notice that these parity bits are drawn in <span style="color: blue">blue</span> in Table 1. The 3-bit indexes listed in Column 5 of Table 1 are obtained by appending the <span style="color: blue">blue</span> parity bit from Column 4 to the pair of <span style="color: red">red</span> bits representing the top and left colors from Column 3. Finally, the index in Column 6 is the integer whose binary representation is in Column 5.</p>
-<center> <a class="anchor" id="index"></a>
-<table class="doxtable">
+<h3>4.2 Getting 3-bit Tile Indexes From Alphabetic Representations</h3>
+<p >The 4-bit representation is not ideal since 4 bits can describe 16 things whereas we have only 8 tiles. A compact 3-bit index can be obtained from a 4-bit number as follows. The first column of Table 1 below lists the 8 tiles in alphabetic form, with the corresponding 4-bit representation in the second column. Notice that the first two bits, which represent the top and left colors, respectively, have been indicated in <span style="color: red">red</span> and have been copied to the third column of the table. Suppose the 4-bit representation of a tile is \(x_3x_2x_1x_0\), where \(x_i \in\{0,1\}\) for \(0 \leq i &lt; 4\). Notice that \(x_3\) corresponds to the top color and \(x_1\) corresponds to the bottom color. The fourth column of Table 1 contains \(x_3 \oplus x_1\), where \(\oplus\) is the exclusive-or operator, which is 1 iff exactly one of its arguments is 1 and the other 0 and is implemented in C++ as <code>operator^</code>. Column four this contains the exclusive-or of the top and bottom colors of the tile. Notice that these parity bits are drawn in <span style="color: blue">blue</span> in Table 1. The 3-bit indexes listed in Column 5 of Table 1 are obtained by appending the <span style="color: blue">blue</span> parity bit from Column 4 to the pair of <span style="color: red">red</span> bits representing the top and left colors from Column 3. Finally, the index in Column 6 is the integer whose binary representation is in Column 5.</p>
+<center> <table class="doxtable">
 <caption>Table 1: Tile indexes from colors.</caption>
 <tr>
 <th>Colors</th><th>4-bit</th><th>Top Left</th><th>Top \(\oplus\) Bottom</th><th>3-bit Index</th><th>Index </th></tr>
@@ -127,10 +143,9 @@ Fig. 3: The 4-bit form of tile GBRY is 0011.</div></div>
 <tr>
 <td align="center">RYGB</td><td align="center"><span style="color: red">11</span>00</td><td align="center"><span style="color: red">11</span></td><td align="center"><span style="color: blue">1</span></td><td align="center"><span style="color: red">11</span><span style="color: blue">1</span></td><td align="center">7 </td></tr>
 </table>
-</center><h3>3.3 Getting Alphabetic Representations From 3-bit Tile Indexes</h3>
-<p >The process described in the previous section may be inverted, that is, the colors of the tile with a given 3-bit index can be found as follows. The first column of Table 2 below lists the 3-bit indices in numeric form with their binary representations in Column 2. Note that the left-most two bits, shown in <span style="color: red">red</span>, are the colors of the top and left sides of the tile, and the rightmost bit (shown in <span style="color: blue">blue</span>) is the parity bit shown in Column 4 of Table 1, that is, the exclusive-or of the top and bottom colors. Suppose the 3-bit representation of a tile is \(y_2y_1y_0\), where \(y_i \in\{0,1\}\) for \(0 &lt;=i &lt; 3\). Column 5 lists \(y_2 \oplus y_0\), which is the bottom color of the tile. These entries are draw in <span style="color: brown">brown</span>. Column 6 lists \(y_1 \oplus y_0\), which is the right color of the tile. These entries are draw in <span style="color: orange">orange</span>. The 4-bit representation of the tile can be found in Column 7. These consist of the <span style="color: red">red</span> bits from Column 2 followed by the <span style="color: brown">brown</span> bit from Column 5, followed by the <span style="color: orange">orange</span> bit from Column 6. Column 8 lists the corresponding tiles in alphabetic form.</p>
-<center> <a class="anchor" id="index"></a>
-<table class="doxtable">
+</center><h3>4.3 Getting Alphabetic Representations From 3-bit Tile Indexes</h3>
+<p >The process described in the previous section may be inverted, that is, the colors of the tile with a given 3-bit index can be found as follows. The first column of Table 2 below lists the 3-bit indices in numeric form with their binary representations in Column 2. Note that the left-most two bits, shown in <span style="color: red">red</span>, are the colors of the top and left sides of the tile, and the rightmost bit (shown in <span style="color: blue">blue</span>) is the parity bit shown in Column 4 of Table 1, that is, the exclusive-or of the top and bottom colors. Suppose the 3-bit representation of a tile is \(y_2y_1y_0\), where \(y_i \in\{0,1\}\) for \(0 \leq i &lt; 3\). Column 5 lists \(y_2 \oplus y_0\), which is the bottom color of the tile. These entries are draw in <span style="color: brown">brown</span>. Column 6 lists \(y_1 \oplus y_0\), which is the right color of the tile. These entries are draw in <span style="color: orange">orange</span>. The 4-bit representation of the tile can be found in Column 7. These consist of the <span style="color: red">red</span> bits from Column 2 followed by the <span style="color: brown">brown</span> bit from Column 5, followed by the <span style="color: orange">orange</span> bit from Column 6. Column 8 lists the corresponding tiles in alphabetic form.</p>
+<center> <table class="doxtable">
 <caption>Table 2: Tile colors from indexes.</caption>
 <tr>
 <th>Index</th><th>3-bit Index</th><th>Top Left</th><th>Parity</th><th>Top \(\oplus\) Parity</th><th>Left \(\oplus\) Parity</th><th>4-bit</th><th>Colors </th></tr>
@@ -151,7 +166,7 @@ Fig. 3: The 4-bit form of tile GBRY is 0011.</div></div>
 <tr>
 <td align="center">7</td><td align="center"><span style="color: red">11</span><span style="color: blue">1</span></td><td align="center"><span style="color: red">11</span></td><td align="center"><span style="color: blue">1</span></td><td align="center"><span style="color: brown">0</span></td><td align="center"><span style="color: orange">0</span></td><td align="center"><span style="color: red">11</span><span style="color: brown">0</span><span style="color: orange">0</span></td><td align="center">RYGB </td></tr>
 </table>
-</center><h3>3.4 Tiling the Grid</h3>
+</center><h3>4.4 Tiling the Grid</h3>
 <p >Function <code><a class="el" href="class_c_wang_tiler.html#a0ae5a109c64e6e4fe9455e41912b552f" title="Generate tiling.">CWangTiler::Generate()</a></code> tiles the grid in row-major order, that is, from left-to-right across each row, from the top row to the bottom. During each iteration a tile must be chosen matching the colors of the existing tiles above and to the left of the current grid position. That is, the top and left colors of the current tile are fixed by the bottom color of the tile above and the right color of the tile to the left. Notice, that the following property holds for the tile set in Fig. 2:</p>
 <blockquote class="doxtable">
 <p >Key Fact 1: For every choice of top and left colors there are exactly two tiles that match. </p>
@@ -165,22 +180,13 @@ Fig. 4: There are exactly 2 choices for a tile once its top and left colors have
 <p >Key Fact 2: Of the two matching tiles in Key Fact 1, one will have its bottom and right colors equal to the top and left colors, respectively, and the other will have its bottom and right colors the opposite of the top and left colors, respectively. </p>
 </blockquote>
 <p>For example, in Fig. 3 of the two candidate tiles on the right with top red and left yellow, the top one has identical bottom and right colors (bottom red and right yellow) while the bottom one has flipped bottom and right colors (bottom green and right blue). Key Fact 2 is the reason why we were able to get by with computing just one parity bit in Table 1 instead of two: if one of the bottom or right colors is flipped then they both are.</p>
-<h3>3.5 Choosing the Next Tile</h3>
-<p >Suppose the tile above the current grid position has index \(y = y_2y_1y_0\), the tile to the left has index \(x = x_2x_1x_0\), and we need a matching tile with index \(z = z_2z_1z_0\). Its top color \(z_2\) must equal the top tile's bottom color, which is \(y_2 \oplus y_0\). In code that would be <code>(y&amp;4)^(y&amp;1)&lt;&lt;2</code> (note that <code>&lt;&lt;</code> has higher precedence than <code>^</code>). Its left color \(z_1\) must equal the left tile's right color, which is \(x_1 \oplus x_0\). In code that would be <code>(x&amp;2)^(x&amp;1)&lt;&lt;1</code>. The remaining bit \(z_0\) can be chosen pseudo-randomly. This is implemented in <code><a class="el" href="class_c_wang_tiler.html#a678160809616a2877a4f57c39e7dd7d6" title="Choose random tile.">CWangTiler::Match()</a></code>. See Section 3.3 above for more details.</p>
-<h2>4. The User Interface </h2>
-<p >The user interface consists of two drop-down menus, <code>File</code>, and <code>Tileset</code>. The <code>File</code> menu lets you <code>Generate</code> a new Wang tiling, <code>Save</code> the current image, or <code>Quit</code> the application.</p>
-<div class="image">
-<img src="FileMenu.png" alt="" width="160"/>
-</div>
-<p >The <code>Tileset</code> menu lets you select from some hard-coded tilesets. A checkmark will appear next to the one that is currently displayed. See Fig. 1 for some examples.</p>
-<div class="image">
-<img src="TilesetMenu.png" alt="" width="151"/>
-</div>
- </div></div><!-- PageDoc -->
+<h3>4.5 Choosing the Next Tile</h3>
+<p >Suppose the tile above the current grid position has index \(y\), the tile to the left has index \(x\), and we need a matching tile with index \(z\). Let \(y_2y_1y_0\) be the binary representation of \(y\), that is, \(y = 4y_2+2y_1+y_0\). Similarly, let \(x_2x_1x_0\) be the binary representation of \(x\) and \(z_2z_1z_0\) be the binary representation of \(z\). Consider the choices for the tile in the current grid position, which is constrained by the colors of the tile above it and the tile to its left. Its top color \(z_2\) must equal the top tile's bottom color, which is \(y_2 \oplus y_0\). In code that would be <code>(y&amp;4)^(y&amp;1)&lt;&lt;2</code> (noting that <code>&lt;&lt;</code> has higher precedence than <code>^</code>). Its left color \(z_1\) must equal the left tile's right color, which is \(x_1 \oplus x_0\). In code that would be <code>(x&amp;2)^(x&amp;1)&lt;&lt;1</code>. The remaining bit \(z_0\) can be chosen pseudo-randomly. This is implemented in <code><a class="el" href="class_c_wang_tiler.html#a678160809616a2877a4f57c39e7dd7d6" title="Choose random tile.">CWangTiler::Match()</a></code>. Refer back to Section 4.3 for more details. </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 11 2022 12:35:21 for Wang Tiling by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+Generated on Sun Mar 20 2022 13:16:17 for Wang Tiling by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
 </small></address>
 </body>
 </html>
