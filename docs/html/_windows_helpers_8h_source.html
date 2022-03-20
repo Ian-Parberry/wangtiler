@@ -140,15 +140,28 @@ $(function() {
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#pragma endregion Helper functions</span></div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#endif </span><span class="comment">//__WINDOWSHELPERS_H__</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">// Menu functions</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#pragma region Menu functions</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keywordtype">void</span> <a class="code hl_function" href="_windows_helpers_8h.html#a2d2b44f50534dd544e3a845e20bafee3">CreateFileMenu</a>(HMENU hParent); </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>HMENU <a class="code hl_function" href="_windows_helpers_8h.html#a2b7bd85942257e169d7324d98c98511e">CreateTilesetMenu</a>(HMENU hParent); </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keywordtype">void</span> <a class="code hl_function" href="_windows_helpers_8h.html#abb0f0a427776c70a36ce4153f0062f3c">CreateHelpMenu</a>(HMENU hParent); </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#pragma endregion Menu functions</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#endif </span><span class="comment">//__WINDOWSHELPERS_H__</span></div>
 <div class="ttc" id="a_includes_8h_html"><div class="ttname"><a href="_includes_8h.html">Includes.h</a></div><div class="ttdoc">Useful includes.</div></div>
 <div class="ttc" id="a_windows_helpers_8h_html_a1cb7feb5f1f8c6485b074189db2719b8"><div class="ttname"><a href="_windows_helpers_8h.html#a1cb7feb5f1f8c6485b074189db2719b8">SaveBitmap</a></div><div class="ttdeci">HRESULT SaveBitmap(HWND, Gdiplus::Bitmap *)</div><div class="ttdoc">Save bitmap to file.</div><div class="ttdef"><b>Definition:</b> <a href="_windows_helpers_8cpp_source.html#l00141">WindowsHelpers.cpp:141</a></div></div>
+<div class="ttc" id="a_windows_helpers_8h_html_a2b7bd85942257e169d7324d98c98511e"><div class="ttname"><a href="_windows_helpers_8h.html#a2b7bd85942257e169d7324d98c98511e">CreateTilesetMenu</a></div><div class="ttdeci">HMENU CreateTilesetMenu(HMENU hParent)</div><div class="ttdoc">Create Tileset menu.</div><div class="ttdef"><b>Definition:</b> <a href="_windows_helpers_8cpp_source.html#l00201">WindowsHelpers.cpp:201</a></div></div>
+<div class="ttc" id="a_windows_helpers_8h_html_a2d2b44f50534dd544e3a845e20bafee3"><div class="ttname"><a href="_windows_helpers_8h.html#a2d2b44f50534dd544e3a845e20bafee3">CreateFileMenu</a></div><div class="ttdeci">void CreateFileMenu(HMENU hParent)</div><div class="ttdoc">Create File menu.</div><div class="ttdef"><b>Definition:</b> <a href="_windows_helpers_8cpp_source.html#l00187">WindowsHelpers.cpp:187</a></div></div>
 <div class="ttc" id="a_windows_helpers_8h_html_ab90ef52869992f4af6696021ce4a1769"><div class="ttname"><a href="_windows_helpers_8h.html#ab90ef52869992f4af6696021ce4a1769">InitGDIPlus</a></div><div class="ttdeci">ULONG_PTR InitGDIPlus()</div><div class="ttdoc">Initialize GDI+.</div><div class="ttdef"><b>Definition:</b> <a href="_windows_helpers_8cpp_source.html#l00088">WindowsHelpers.cpp:88</a></div></div>
+<div class="ttc" id="a_windows_helpers_8h_html_abb0f0a427776c70a36ce4153f0062f3c"><div class="ttname"><a href="_windows_helpers_8h.html#abb0f0a427776c70a36ce4153f0062f3c">CreateHelpMenu</a></div><div class="ttdeci">void CreateHelpMenu(HMENU hParent)</div><div class="ttdoc">Create Help menu.</div><div class="ttdef"><b>Definition:</b> <a href="_windows_helpers_8cpp_source.html#l00216">WindowsHelpers.cpp:216</a></div></div>
 <div class="ttc" id="a_windows_helpers_8h_html_af0de5efedf2d3b9a5e0dbabcd61e8d35"><div class="ttname"><a href="_windows_helpers_8h.html#af0de5efedf2d3b9a5e0dbabcd61e8d35">InitWindow</a></div><div class="ttdeci">void InitWindow(HINSTANCE, INT, WNDPROC)</div><div class="ttdoc">Initialize window.</div><div class="ttdef"><b>Definition:</b> <a href="_windows_helpers_8cpp_source.html#l00046">WindowsHelpers.cpp:46</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 20 2022 13:16:17 for Wang Tiling by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+Generated on Sun Mar 20 2022 13:38:09 for Wang Tiling by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
 </small></address>
 </body>
 </html>

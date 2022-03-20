@@ -66,4 +66,15 @@ HRESULT SaveBitmap(HWND, Gdiplus::Bitmap*); ///< Save bitmap to file.
 
 #pragma endregion Helper functions
 
+///////////////////////////////////////////////////////////////////////////////
+// Menu functions
+
+#pragma region Menu functions
+
+void CreateFileMenu(HMENU hParent); ///< Create `File` menu.
+HMENU CreateTilesetMenu(HMENU hParent); ///< Create `Tileset` menu.
+void CreateHelpMenu(HMENU hParent); ///< Create `Help` menu.
+
+#pragma endregion Menu functions
+
 #endif //__WINDOWSHELPERS_H__

@@ -175,3 +175,50 @@ HRESULT SaveBitmap(HWND hwnd, Gdiplus::Bitmap* pBitmap){
 } //SaveBitmap
 
 #pragma endregion Save
+
+///////////////////////////////////////////////////////////////////////////////
+// Create menu functions
+
+#pragma region Create menu functions
+
+/// Create the `File` menu.
+/// \param hParent Handle to the parent menu.
+
+void CreateFileMenu(HMENU hParent){
+  HMENU hMenu = CreateMenu();
+  
+  AppendMenuW(hMenu, MF_STRING, IDM_FILE_GENERATE, L"Generate");
+  AppendMenuW(hMenu, MF_STRING, IDM_FILE_SAVE,     L"Save...");
+  AppendMenuW(hMenu, MF_STRING, IDM_FILE_QUIT,     L"Quit");
+  
+  AppendMenuW(hParent, MF_POPUP, (UINT_PTR)hMenu, L"&File");
+} //CreateFileMenu
+
+/// Create the `Tileset` menu.
+/// \param hParent Handle to the parent menu.
+/// \return Handle to the `Tileset` menu.
+
+HMENU CreateTilesetMenu(HMENU hParent){
+  HMENU hMenu = CreateMenu();
+  
+  AppendMenuW(hMenu, MF_STRING, IDM_TILESET_DEFAULT, L"Default");
+  AppendMenuW(hMenu, MF_STRING, IDM_TILESET_FLOWER,  L"Flowers");
+  AppendMenuW(hMenu, MF_STRING, IDM_TILESET_MUD,     L"Mud");
+  AppendMenuW(hMenu, MF_STRING, IDM_TILESET_GRASS,   L"Grass");
+  
+  AppendMenuW(hParent, MF_POPUP, (UINT_PTR)hMenu, L"&Tileset");
+  return hMenu;
+} //CreateTilesetMenu
+
+/// Create the `Help` menu.
+/// \param hParent Handle to the parent menu.
+
+void CreateHelpMenu(HMENU hParent){
+  HMENU hMenu = CreateMenu();
+  
+  AppendMenuW(hMenu, MF_STRING, IDM_HELP_HELP, L"Display help...");
+  AppendMenuW(hMenu, MF_STRING, IDM_HELP_ABOUT, L"About...");
+  AppendMenuW(hParent, MF_POPUP, (UINT_PTR)hMenu, L"&Help");
+} //CreateHelpMenu
+
+#pragma endregion Create menu functions

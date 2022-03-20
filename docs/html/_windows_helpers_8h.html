@@ -129,6 +129,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a1cb7feb5f1f8c6485b074189db2719b8"><td class="memItemLeft" align="right" valign="top">HRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_windows_helpers_8h.html#a1cb7feb5f1f8c6485b074189db2719b8">SaveBitmap</a> (HWND, Gdiplus::Bitmap *)</td></tr>
 <tr class="memdesc:a1cb7feb5f1f8c6485b074189db2719b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save bitmap to file.  <a href="_windows_helpers_8h.html#a1cb7feb5f1f8c6485b074189db2719b8">More...</a><br /></td></tr>
 <tr class="separator:a1cb7feb5f1f8c6485b074189db2719b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d2b44f50534dd544e3a845e20bafee3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_windows_helpers_8h.html#a2d2b44f50534dd544e3a845e20bafee3">CreateFileMenu</a> (HMENU hParent)</td></tr>
+<tr class="memdesc:a2d2b44f50534dd544e3a845e20bafee3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create <code>File</code> menu.  <a href="_windows_helpers_8h.html#a2d2b44f50534dd544e3a845e20bafee3">More...</a><br /></td></tr>
+<tr class="separator:a2d2b44f50534dd544e3a845e20bafee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b7bd85942257e169d7324d98c98511e"><td class="memItemLeft" align="right" valign="top">HMENU&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_windows_helpers_8h.html#a2b7bd85942257e169d7324d98c98511e">CreateTilesetMenu</a> (HMENU hParent)</td></tr>
+<tr class="memdesc:a2b7bd85942257e169d7324d98c98511e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create <code>Tileset</code> menu.  <a href="_windows_helpers_8h.html#a2b7bd85942257e169d7324d98c98511e">More...</a><br /></td></tr>
+<tr class="separator:a2b7bd85942257e169d7324d98c98511e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb0f0a427776c70a36ce4153f0062f3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_windows_helpers_8h.html#abb0f0a427776c70a36ce4153f0062f3c">CreateHelpMenu</a> (HMENU hParent)</td></tr>
+<tr class="memdesc:abb0f0a427776c70a36ce4153f0062f3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create <code>Help</code> menu.  <a href="_windows_helpers_8h.html#abb0f0a427776c70a36ce4153f0062f3c">More...</a><br /></td></tr>
+<tr class="separator:abb0f0a427776c70a36ce4153f0062f3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >These platform-dependent functions are hidden away so that the faint-of-heart don't have to see them if they're offended by them. <br  />
@@ -281,6 +290,85 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a2d2b44f50534dd544e3a845e20bafee3" name="a2d2b44f50534dd544e3a845e20bafee3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d2b44f50534dd544e3a845e20bafee3">&#9670;&nbsp;</a></span>CreateFileMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CreateFileMenu </td>
+          <td>(</td>
+          <td class="paramtype">HMENU&#160;</td>
+          <td class="paramname"><em>hParent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Create the <code>File</code> menu. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hParent</td><td>Handle to the parent menu. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_windows_helpers_8cpp_source.html#l00187">187</a> of file <a class="el" href="_windows_helpers_8cpp_source.html">WindowsHelpers.cpp</a>.</p>
+
+</div>
+</div>
+<a id="abb0f0a427776c70a36ce4153f0062f3c" name="abb0f0a427776c70a36ce4153f0062f3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb0f0a427776c70a36ce4153f0062f3c">&#9670;&nbsp;</a></span>CreateHelpMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CreateHelpMenu </td>
+          <td>(</td>
+          <td class="paramtype">HMENU&#160;</td>
+          <td class="paramname"><em>hParent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Create the <code>Help</code> menu. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hParent</td><td>Handle to the parent menu. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_windows_helpers_8cpp_source.html#l00216">216</a> of file <a class="el" href="_windows_helpers_8cpp_source.html">WindowsHelpers.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a2b7bd85942257e169d7324d98c98511e" name="a2b7bd85942257e169d7324d98c98511e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b7bd85942257e169d7324d98c98511e">&#9670;&nbsp;</a></span>CreateTilesetMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">HMENU CreateTilesetMenu </td>
+          <td>(</td>
+          <td class="paramtype">HMENU&#160;</td>
+          <td class="paramname"><em>hParent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Create the <code>Tileset</code> menu. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hParent</td><td>Handle to the parent menu. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Handle to the <code>Tileset</code> menu. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_windows_helpers_8cpp_source.html#l00201">201</a> of file <a class="el" href="_windows_helpers_8cpp_source.html">WindowsHelpers.cpp</a>.</p>
+
+</div>
+</div>
 <a id="ab90ef52869992f4af6696021ce4a1769" name="ab90ef52869992f4af6696021ce4a1769"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab90ef52869992f4af6696021ce4a1769">&#9670;&nbsp;</a></span>InitGDIPlus()</h2>
 
@@ -386,7 +474,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 20 2022 13:16:17 for Wang Tiling by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+Generated on Sun Mar 20 2022 13:38:09 for Wang Tiling by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
 </small></address>
 </body>
 </html>
